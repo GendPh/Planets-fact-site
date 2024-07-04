@@ -1,0 +1,27 @@
+<header class="bg-primary flex justify-between items-center px-4 py-6 border-b border-b-white/20">
+
+  <p class="font-Antonio text-[28px] tracking-[-1.05px]">THE PLANETS</p>
+
+  <button (click)="mobileNavService.toggle()"
+    [ngClass]="{'opacity-25 transition-opacity duration-150': mobileNavService.isOpen()}">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="17">
+      <g fill="#FFF" fill-rule="evenodd">
+        <path d="M0 0h24v3H0zM0 7h24v3H0zM0 14h24v3H0z" />
+      </g>
+    </svg>
+  </button>
+
+</header>
+
+<app-mobile-nav />
+
+<!-- <ul>
+  <li routerLink="/Mercury">Mercury</li>
+  <li routerLink="/Venus">Venus</li>
+  <li routerLink="/Earth">Earth</li>
+  <li routerLink="/Mars">Mars</li>
+  <li routerLink="/Jupiter">Jupiter</li>
+  <li routerLink="/Saturn">Saturn</li>
+  <li routerLink="/Uranus">Uranus</li>
+  <li routerLink="/Neptune">Neptune</li>
+  </ul> -->

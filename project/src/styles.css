@@ -1,3 +1,86 @@
+@import url('https://fonts.googleapis.com/css2?family=Antonio:wght@100..700&family=League+Spartan:wght@100..900&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+  --color-button-active: #3490dc;
+  --planet-img-size: 111px;
+}
+
+[data-theme='Mercury'] {
+  --color-button-active: #3490dc;
+  --planet-img-size: 111px;
+}
+[data-theme='Venus'] {
+  --color-button-active: #eda249;
+  --planet-img-size: 154px;
+}
+[data-theme='Earth'] {
+  --color-button-active: #6d2ed5;
+  --planet-img-size: 173px;
+}
+[data-theme='Mars'] {
+  --color-button-active: #d14c32;
+  --planet-img-size: 129px;
+}
+[data-theme='Jupiter'] {
+  --color-button-active: #d83a34;
+  --planet-img-size: 224px;
+}
+[data-theme='Saturn'] {
+  --color-button-active: #cd5120;
+  --planet-img-size: 256px;
+}
+[data-theme='Uranus'] {
+  --color-button-active: #1ec1a2;
+  --planet-img-size: 176px;
+}
+[data-theme='Neptune'] {
+  --color-button-active: #2d68f0;
+  --planet-img-size: 173px;
+}
+
+@layer base {
+  body {
+    background: transparent url('assets/background-stars.svg') no-repeat center
+      center;
+    @apply bg-primary text-white;
+  }
+
+  #mobile-nav {
+    @apply bg-primary px-6 py-11 fixed z-50 h-full w-full transition-all duration-150;
+    &:not(.open) {
+      @apply -translate-x-full;
+    }
+    &.open {
+      @apply translate-x-0;
+    }
+  }
+
+  #planet-nav article {
+    @apply relative border-b-4 border-b-transparent transition-colors duration-150;
+    &.active {
+      @apply border-button-active;
+    }
+  }
+}
+
+@layer components {
+  .font-Antonio {
+    font-family: 'Antonio', sans-serif;
+  }
+  .font-Spartan {
+    font-family: 'League Spartan', sans-serif;
+  }
+  .button {
+    @apply block bg-transparent text-white transition-colors duration-300;
+    &.active {
+      @apply bg-button-active;
+    }
+    &:hover {
+      @apply bg-button-hover;
+    }
+  }
+}
