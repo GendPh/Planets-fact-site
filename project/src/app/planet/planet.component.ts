@@ -4,7 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { PlanetService } from '../service/planet.service';
 import { Planet } from '../model/planet.model';
 import { quantum } from 'ldrs'
-
+import { Title } from '@angular/platform-browser';
 @Component({
   selector: 'app-planet',
   standalone: true,
@@ -22,7 +22,8 @@ export class PlanetComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private planetService: PlanetService
+    private planetService: PlanetService,
+    private titleService: Title
   ) { }
 
   ngOnInit(): void {
@@ -30,6 +31,7 @@ export class PlanetComponent implements OnInit {
 
     this.route.params.subscribe(params => {
       this.planetName = params['planetName'];
+      this.titleService.setTitle(`Planet: ${this.planetName}`);
       this.changeImgView();
       this.planetService.getPlanet(this.planetName).subscribe({
         next: (planet) => {
