@@ -13,8 +13,15 @@ export class PlanetService {
   constructor(private http: HttpClient) { }
 
   public getPlanet(planetName: string): Observable<Planet> {
-    return this.http.get<Planet[]>(`${this.url}?name_like=${planetName}`).pipe(
-      map(planets => planets[0])
+    return this.http.get<Planet[]>(`${this.url}?name=${planetName}`).pipe(
+      map((planets: Planet[]) => {
+        console.log(planets);
+        if (planets.length > 0) {
+          return planets[0];
+        } else {
+          throw new Error('Planet not found');
+        }
+      })
     );
   }
 

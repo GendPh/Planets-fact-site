@@ -10,5 +10,8 @@ export const routes: Routes = [
   {
     path: ':planetName',
     component: PlanetComponent
+  },
+  {
+    path: '**', redirectTo: 'Mercury'
   }
 ];

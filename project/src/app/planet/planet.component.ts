@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, CUSTOM_ELEMENTS_SCHEMA, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { PlanetService } from '../service/planet.service';
 import { Planet } from '../model/planet.model';
 import { quantum } from 'ldrs'
@@ -22,6 +22,7 @@ export class PlanetComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private planetService: PlanetService,
     private titleService: Title
   ) { }
@@ -37,8 +38,8 @@ export class PlanetComponent implements OnInit {
         next: (planet) => {
           this.planet = planet;
         },
-        error: (error) => {
-
+        error: (error: Error) => {
+          this.router.navigate(['/Mercury']);
         },
         complete: () => {
           this.loadingPlanet = false;
