@@ -1,20 +1,21 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { PlanetService } from '../service/planet.service';
 import { Planet } from '../model/planet.model';
+import { quantum } from 'ldrs'
 
 @Component({
   selector: 'app-planet',
   standalone: true,
   imports: [CommonModule],
   templateUrl: './planet.component.html',
-  styles: ``
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class PlanetComponent implements OnInit {
 
   public planetName: string = "Mercury";
-  public view: string = "internal";
+  public view: string = "external";
   public img: string = `../../assets/planet-${this.planetName.toLowerCase()}.svg`;
   public loadingPlanet: boolean = true;
   public planet: Planet | undefined;
@@ -25,6 +26,8 @@ export class PlanetComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    quantum.register();
+
     this.route.params.subscribe(params => {
       this.planetName = params['planetName'];
       this.changeImgView();
@@ -43,9 +46,9 @@ export class PlanetComponent implements OnInit {
   }
 
 
-  changeImgView(view: string = "internal") {
-    const int: string = `../../assets/planet-${this.planetName.toLowerCase()}.svg`;
-    const ext: string = `../../assets/planet-${this.planetName.toLowerCase()}-internal.svg`;
+  changeImgView(view: string = "external") {
+    const ext: string = `../../assets/planet-${this.planetName.toLowerCase()}.svg`;
+    const int: string = `../../assets/planet-${this.planetName.toLowerCase()}-internal.svg`;
     if (view === "internal") {
       this.img = int;
     } else if (view === "external") {

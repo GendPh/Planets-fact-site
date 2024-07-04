@@ -42,6 +42,37 @@
   --planet-img-size: 173px;
 }
 
+@media (min-width: 768px) {
+  :root {
+    --planet-img-size: 290px;
+  }
+
+  [data-theme='Mercury'] {
+    --planet-img-size: 290px;
+  }
+  [data-theme='Venus'] {
+    --planet-img-size: 400px;
+  }
+  [data-theme='Earth'] {
+    --planet-img-size: 450px;
+  }
+  [data-theme='Mars'] {
+    --planet-img-size: 336px;
+  }
+  [data-theme='Jupiter'] {
+    --planet-img-size: 582px;
+  }
+  [data-theme='Saturn'] {
+    --planet-img-size: 416px;
+  }
+  [data-theme='Uranus'] {
+    --planet-img-size: 458px;
+  }
+  [data-theme='Neptune'] {
+    --planet-img-size: 450px;
+  }
+}
+
 @layer base {
   body {
     background: transparent url('assets/background-stars.svg') no-repeat center

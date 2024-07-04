@@ -1,12 +1,12 @@
-<main [attr.data-theme]="planetName">
+<main [attr.data-theme]="planetName" class="animate-fade-in">
   <section id="planet-nav"
-    class="px-6 grid grid-cols-3 border-b border-b-white/20 uppercase text-[9px] font-Spartan font-bold leading-[0] tracking-[1.93px]">
-    <article class="py-[20px] text-center active" [ngClass]="{'active': view === 'internal'}" (click)="changeImgView()">
+    class="px-6 grid grid-cols-3 border-b border-b-white/20 uppercase text-[9px] font-Spartan font-bold leading-[0] tracking-[1.93px] md:hidden">
+    <article class="py-[20px] text-center active" [ngClass]="{'active': view === 'external'}" (click)="changeImgView()">
       <p>
         overview
       </p>
     </article>
-    <article class="py-[20px] text-center" [ngClass]="{'active': view === 'external'}"
+    <article class="py-[20px] text-center" [ngClass]="{'active': view === 'internal'}"
       (click)="changeImgView('external')">
       <p>
         structure
@@ -20,74 +20,104 @@
     </article>
   </section>
 
-  <section>
-    <article class="min-h-[311px] flex justify-center items-center ">
-      <figure class="block w-planet-size aspect-square mx-auto rounded-full relative">
-        <img [src]="img" alt="planet" class="w-full h-full">
+  <div class="grid lg:grid-cols-2 lg:gap-[220px] lg:px-[165px] lg:mt-[126px] lg:mb-[87px]">
+    <section>
+      <article class="min-h-[311px] lg:min-h-full flex justify-center items-center ">
+        <figure class="block w-planet-size aspect-square mx-auto rounded-full relative">
+          <img [src]="img" alt="planet" class="w-full h-full">
 
-        <span
-          class="block absolute top-[65%] left-1/2 -translate-x-1/2 w-fit pointer-events-none transition-opacity duration-150 "
-          [ngClass]="{'opacity-0': view !== 'surface'}">
-          <img src="../../assets/geology-{{planetName.toLowerCase()}}.png" alt="geology of {{planetName}}"
-            class="w-full h-full">
-        </span>
+          <span
+            class="block absolute top-[65%] left-1/2 -translate-x-1/2 w-fit pointer-events-none transition-opacity duration-150 "
+            [ngClass]="{'opacity-0': view !== 'surface'}">
+            <img src="../../assets/geology-{{planetName.toLowerCase()}}.png" alt="geology of {{planetName}}"
+              class="w-full h-full">
+          </span>
 
-      </figure>
-    </article>
-  </section>
+        </figure>
+      </article>
+    </section>
 
-  <section class="text-center">
-    <article>
-      <h1 class="uppercase text-[40px] tracking-[0px] font-Antonio">{{planetName}}</h1>
+    @if(loadingPlanet){
 
-      @if(loadingPlanet){
+    <section class="text-center">
+      <p class="mb-5">fetching details about {{planetName}}</p>
+      <l-quantum size="45" speed="1.75" color="white"></l-quantum>
+    </section>
 
-      <p>fetching details about {{planetName}}</p>
+    }@else {
+    <section
+      class="text-center px-[25px] md:px-[52px] lg:px-0 md:text-start animate-fade-in grid md:grid-cols-2 lg:grid-cols-1 md:gap-[69px]">
+      <article>
+        <h1 class="uppercase text-[40px] lg:text-[80px] tracking-[0px] font-Antonio">{{planetName}}</h1>
 
-      }@else {
-
-      <p class="mt-4 px-6 text-[11px] font-Spartan leading-[22px]">{{planet?.overview?.content}}</p>
-
-      <div class="flex items-center justify-center gap-1">
-        <p class="text-[12px] leading-[25px] text-white/50 font-normal">
-          Source:
-          <a [href]="planet?.overview?.source" target="_blank" class="underline font-bold">
-            Wikipedia
-          </a>
+        <p class="mt-4 md:mt-6 md:mb-8 px-6 md:p-0 text-[11px] lg:text-[15px] font-Spartan leading-[22px]">
+          {{planet?.overview?.content}}
         </p>
-        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12">
-          <path fill="#FFF"
-            d="M11.34.66C10.9.22 10.37 0 9.75 0h-7.5C1.63 0 1.1.22.66.66.22 1.1 0 1.63 0 2.25v7.5c0 .62.22 1.15.66 1.59.44.44.97.66 1.59.66h7.5c.62 0 1.15-.22 1.59-.66.44-.44.66-.97.66-1.59v-7.5c0-.62-.22-1.15-.66-1.59zM10 6.25a.467.467 0 01-.305.46.544.544 0 01-.195.04.465.465 0 01-.352-.149L8.023 5.476 3.852 9.648a.481.481 0 01-.352.149.48.48 0 01-.352-.149l-.796-.797a.48.48 0 01-.149-.351.48.48 0 01.149-.352l4.172-4.172-1.125-1.125c-.162-.15-.198-.333-.11-.546A.467.467 0 015.75 2H9.5c.135 0 .253.05.352.148A.48.48 0 0110 2.5v3.75z"
-            opacity=".5" />
-        </svg>
+
+        <div class="flex items-center justify-center md:justify-start gap-1">
+          <p class="text-[12px] lg:text-[14px] leading-[25px] text-white/50 font-normal">
+            Source:
+            <a [href]="planet?.overview?.source" target="_blank" class="underline font-bold">
+              Wikipedia
+            </a>
+          </p>
+          <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12">
+            <path fill="#FFF"
+              d="M11.34.66C10.9.22 10.37 0 9.75 0h-7.5C1.63 0 1.1.22.66.66.22 1.1 0 1.63 0 2.25v7.5c0 .62.22 1.15.66 1.59.44.44.97.66 1.59.66h7.5c.62 0 1.15-.22 1.59-.66.44-.44.66-.97.66-1.59v-7.5c0-.62-.22-1.15-.66-1.59zM10 6.25a.467.467 0 01-.305.46.544.544 0 01-.195.04.465.465 0 01-.352-.149L8.023 5.476 3.852 9.648a.481.481 0 01-.352.149.48.48 0 01-.352-.149l-.796-.797a.48.48 0 01-.149-.351.48.48 0 01.149-.352l4.172-4.172-1.125-1.125c-.162-.15-.198-.333-.11-.546A.467.467 0 015.75 2H9.5c.135 0 .253.05.352.148A.48.48 0 0110 2.5v3.75z"
+              opacity=".5" />
+          </svg>
+        </div>
+      </article>
+      <article
+        class="grid gap-4 mt-[56px] text-[9px] lg:text-[12px] tracking-[1.93px] leading-[25px] font-bold font-Spartan">
+        <div (click)="changeImgView('external')"
+          class="h-fit cursor-pointer uppercase px-5 py-2 border border-white/20 flex items-center gap-[17px]"
+          [ngClass]="{'bg-button-active': view === 'external'}">
+          <span class="text-white/50">01</span>
+          <p class="text-white">overview</p>
+        </div>
+        <div (click)="changeImgView('internal')"
+          class="h-fit cursor-pointer uppercase px-5 py-2 border border-white/20 flex items-center gap-[17px]"
+          [ngClass]="{'bg-button-active': view === 'internal'}">
+          <span class="text-white/50">02</span>
+          <p class="text-white">internal structure</p>
+        </div>
+        <div (click)="changeImgView('surface')"
+          class="h-fit cursor-pointer uppercase px-5 py-2 border border-white/20 flex items-center gap-[17px]"
+          [ngClass]="{'bg-button-active': view === 'surface'}">
+          <span class="text-white/50">03</span>
+          <p class="text-white">surface geology</p>
+        </div>
+      </article>
+    </section>
+    }
+  </div>
+
+  <section class="px-[25px] md:px-[52px] lg:px-[165px] pb-10 mt-[28px]">
+    <article
+      class="text-white/50 text-[8px] uppercase font-Spartan leading-[16px] font-bold tracking-[0.73px] grid md:grid-cols-4 gap-2">
+      <div
+        class="border border-white/20 px-6 py-[12px] md:py-[18px] flex md:flex-col md:items-start md:gap-[6px] justify-between items-center">
+        <p>rotation time</p>
+        <p class="text-white font-medium font-Antonio text-[20px] tracking-[-0.9px] ">{{planet?.rotation}}</p>
       </div>
-      }
+      <div
+        class="border border-white/20 px-6 py-[12px] md:py-[18px] flex md:flex-col md:items-start md:gap-[6px] justify-between items-center">
+        <p>revolution time</p>
+        <p class="text-white font-medium font-Antonio text-[20px] tracking-[-0.9px] ">{{planet?.revolution}}</p>
+      </div>
+      <div
+        class="border border-white/20 px-6 py-[12px] md:py-[18px] flex md:flex-col md:items-start md:gap-[6px] justify-between items-center">
+        <p>radius</p>
+        <p class="text-white font-medium font-Antonio text-[20px] tracking-[-0.9px] ">{{planet?.radius}}</p>
+      </div>
+      <div
+        class="border border-white/20 px-6 py-[12px] md:py-[18px] flex md:flex-col md:items-start md:gap-[6px] justify-between items-center">
+        <p>average temp.</p>
+        <p class="text-white font-medium font-Antonio text-[20px] tracking-[-0.9px] ">{{planet?.temperature}}</p>
+      </div>
     </article>
   </section>
 
-  <section class="px-[25px] pb-10 mt-[28px]">
-    <article
-      class="text-white/50 text-[8px] uppercase font-Spartan leading-[16px] font-bold tracking-[0.73px] grid gap-2">
-      <div class="border border-white/20 px-6 py-[12px] flex justify-between items-center">
-        <p>rotation time</p>
-        <p class="text-white font-medium font-Antonio text-[20px] tranck
-        [-0.75px] ">{{planet?.rotation}}</p>
-      </div>
-      <div class="border border-white/20 px-6 py-[12px] flex justify-between items-center">
-        <p>revolution time</p>
-        <p class="text-white font-medium font-Antonio text-[20px] tranck
-        [-0.75px] ">{{planet?.revolution}}</p>
-      </div>
-      <div class="border border-white/20 px-6 py-[12px] flex justify-between items-center">
-        <p>radius</p>
-        <p class="text-white font-medium font-Antonio text-[20px] tranck
-        [-0.75px] ">{{planet?.radius}}</p>
-      </div>
-      <div class="border border-white/20 px-6 py-[12px] flex justify-between items-center">
-        <p>average temp.</p>
-        <p class="text-white font-medium font-Antonio text-[20px] tranck
-        [-0.75px] ">{{planet?.temperature}}</p>
-      </div>
-    </article>
-  </section>
+
 </main>

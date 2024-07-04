@@ -1,8 +1,9 @@
-<header class="bg-primary flex justify-between items-center px-4 py-6 border-b border-b-white/20">
+<header class="bg-primary flex md:flex-col lg:flex-row
+   gap-[39px] justify-between items-center px-4 md:px-[52px] py-6 lg:py-0 border-b border-b-white/20">
 
   <p class="font-Antonio text-[28px] tracking-[-1.05px]">THE PLANETS</p>
 
-  <button (click)="mobileNavService.toggle()"
+  <button class="md:hidden" (click)="mobileNavService.toggle()"
     [ngClass]="{'opacity-25 transition-opacity duration-150': mobileNavService.isOpen()}">
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="17">
       <g fill="#FFF" fill-rule="evenodd">
@@ -11,17 +12,37 @@
     </svg>
   </button>
 
+  <ul
+    class="hidden md:flex lg:gap-[33px] uppercase justify-between w-full lg:w-fit text-[11px] tracking-[1px] leading-[25px] font-bold font-Spartan">
+
+    <li
+      class="lg:py-6 border-t-4 border-t-transparent hover:border-t-[#3490dc] transition-colors duration-150 cursor-pointer"
+      routerLink="/Mercury" routerLinkActive="text-[#3490dc]">Mercury</li>
+    <li
+      class="lg:py-6 border-t-4 border-t-transparent hover:border-t-[#eda249] transition-colors duration-150 cursor-pointer"
+      routerLink="/Venus" routerLinkActive="text-[#eda249]">
+      Venus</li>
+    <li
+      class="lg:py-6 border-t-4 border-t-transparent hover:border-t-[#6d2ed5] transition-colors duration-150 cursor-pointer"
+      routerLink="/Earth" routerLinkActive="text-[#6d2ed5]">
+      Earth</li>
+    <li
+      class="lg:py-6 border-t-4 border-t-transparent hover:border-t-[#d14c32] transition-colors duration-150 cursor-pointer"
+      routerLink="/Mars" routerLinkActive="text-[#d14c32]">
+      Mars</li>
+    <li
+      class="lg:py-6 border-t-4 border-t-transparent hover:border-t-[#d83a34] transition-colors duration-150 cursor-pointer"
+      routerLink="/Jupiter" routerLinkActive="text-[#d83a34]">Jupiter</li>
+    <li
+      class="lg:py-6 border-t-4 border-t-transparent hover:border-t-[#cd5120] transition-colors duration-150 cursor-pointer"
+      routerLink="/Saturn" routerLinkActive="text-[#cd5120]">Saturn</li>
+    <li
+      class="lg:py-6 border-t-4 border-t-transparent hover:border-t-[#1ec1a2] transition-colors duration-150 cursor-pointer"
+      routerLink="/Uranus" routerLinkActive="text-[#1ec1a2]">Uranus</li>
+    <li
+      class="lg:py-6 border-t-4 border-t-transparent hover:border-t-[#2d68f0] transition-colors duration-150 cursor-pointer"
+      routerLink="/Neptune" routerLinkActive="text-[#2d68f0]">Neptune</li>
+  </ul>
 </header>
 
 <app-mobile-nav />
-
-<!-- <ul>
-  <li routerLink="/Mercury">Mercury</li>
-  <li routerLink="/Venus">Venus</li>
-  <li routerLink="/Earth">Earth</li>
-  <li routerLink="/Mars">Mars</li>
-  <li routerLink="/Jupiter">Jupiter</li>
-  <li routerLink="/Saturn">Saturn</li>
-  <li routerLink="/Uranus">Uranus</li>
-  <li routerLink="/Neptune">Neptune</li>
-  </ul> -->
