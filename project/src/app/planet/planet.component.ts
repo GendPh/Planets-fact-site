@@ -15,7 +15,7 @@ import { Title } from '@angular/platform-browser';
 export class PlanetComponent implements OnInit {
 
   public planetName: string = "Mercury";
-  public view: string = "external";
+  public view: string = "internal";
   public img: string = `../../assets/planet-${this.planetName.toLowerCase()}.svg`;
   public loadingPlanet: boolean = true;
   public planet: Planet | undefined;
@@ -52,12 +52,13 @@ export class PlanetComponent implements OnInit {
   changeImgView(view: string = "external") {
     const ext: string = `../../assets/planet-${this.planetName.toLowerCase()}.svg`;
     const int: string = `../../assets/planet-${this.planetName.toLowerCase()}-internal.svg`;
-    if (view === "internal") {
-      this.img = int;
-    } else if (view === "external") {
+
+    if (view === "external") {
       this.img = ext;
-    } else {
+    } else if (view === "internal") {
       this.img = int;
+    } else {
+      this.img = ext;
     }
 
     this.view = view;

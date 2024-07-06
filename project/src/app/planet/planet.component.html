@@ -7,7 +7,7 @@
       </p>
     </article>
     <article class="py-[20px] text-center" [ngClass]="{'active': view === 'internal'}"
-      (click)="changeImgView('external')">
+      (click)="changeImgView('internal')">
       <p>
         structure
       </p>
@@ -22,7 +22,7 @@
 
   <div class="grid lg:grid-cols-2 lg:gap-[220px] lg:px-[165px] lg:mt-[126px] lg:mb-[87px]">
     <section>
-      <article class="min-h-[311px] lg:min-h-full flex justify-center items-center ">
+      <article class="min-h-[311px] lg:min-h-full flex justify-center items-center md:pt-4">
         <figure class="block w-planet-size aspect-square mx-auto rounded-full relative">
           <img [src]="img" alt="planet" class="w-full h-full">
 
@@ -46,7 +46,7 @@
 
     }@else {
     <section
-      class="text-center px-[25px] md:px-[52px] lg:px-0 md:text-start animate-fade-in grid md:grid-cols-2 lg:grid-cols-1 md:gap-[69px]">
+      class="text-center px-[25px] md:px-[52px] lg:px-0 md:text-start animate-fade-in grid md:grid-cols-2 lg:grid-cols-1">
       <article>
         <h1 class="uppercase text-[40px] lg:text-[80px] tracking-[0px] font-Antonio">{{planetName}}</h1>
 
@@ -69,7 +69,7 @@
         </div>
       </article>
       <article
-        class="grid gap-4 mt-[56px] text-[9px] lg:text-[12px] tracking-[1.93px] leading-[25px] font-bold font-Spartan">
+        class="hidden md:grid gap-4 mt-[56px] text-[9px] lg:text-[12px] tracking-[1.93px] leading-[25px] font-bold font-Spartan">
         <div (click)="changeImgView('external')"
           class="h-fit cursor-pointer uppercase px-5 py-2 border border-white/20 flex items-center gap-[17px]"
           [ngClass]="{'bg-button-active': view === 'external'}">
